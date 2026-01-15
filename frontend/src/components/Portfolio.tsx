@@ -89,6 +89,72 @@ export default function Portfolio() {
           </p>
         </div>
 
+        {/* Featured Project - SZCO */}
+        <div className="mx-auto mt-12 max-w-4xl">
+          <a
+            href="https://szco.it-dk.sk"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block relative rounded-3xl bg-gradient-to-br from-primary-600 via-purple-700 to-violet-600 p-8 shadow-2xl overflow-hidden hover:shadow-primary-500/50 transition-all duration-300 hover:scale-[1.02]"
+          >
+            {/* Background decoration */}
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-30" />
+            
+            <div className="relative">
+              {/* Badge */}
+              <div className="flex items-center gap-3 mb-4">
+                <span className="inline-flex items-center gap-2 rounded-full bg-yellow-400 px-4 py-1.5 text-sm font-bold text-gray-900 animate-pulse">
+                  🚧 V PRÍPRAVE
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-white">
+                  ✨ Nový projekt
+                </span>
+              </div>
+
+              {/* Title */}
+              <h3 className="text-3xl font-bold text-white mb-3 group-hover:text-yellow-200 transition-colors">
+                📊 SZCO.it-dk.sk
+              </h3>
+              
+              {/* Description */}
+              <p className="text-lg text-purple-100 mb-4">
+                <strong className="text-white">Daňová evidencia pre SZČO</strong> - Moderná webová aplikácia pre správu financií živnostníkov a podnikateľov.
+              </p>
+
+              {/* Features */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                <div className="flex items-center gap-2 text-white">
+                  <span className="text-xl">💰</span>
+                  <span className="text-sm">Príjmy a výdavky</span>
+                </div>
+                <div className="flex items-center gap-2 text-white">
+                  <span className="text-xl">📈</span>
+                  <span className="text-sm">Prehľady a štatistiky</span>
+                </div>
+                <div className="flex items-center gap-2 text-white">
+                  <span className="text-xl">📄</span>
+                  <span className="text-sm">Export pre daňové priznanie</span>
+                </div>
+                <div className="flex items-center gap-2 text-white">
+                  <span className="text-xl">🔐</span>
+                  <span className="text-sm">Bezpečné a jednoduché</span>
+                </div>
+              </div>
+
+              {/* Status */}
+              <div className="flex items-center gap-4">
+                <span className="text-purple-200 text-sm">
+                  ⏳ Plánované spustenie: Február 2026
+                </span>
+                <span className="inline-flex items-center gap-2 text-white font-semibold text-sm group-hover:gap-3 transition-all">
+                  Pozrieť demo
+                  <span className="text-xl">→</span>
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+
         <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2">
           {solutions.map((solution) => (
             <div
