@@ -7,6 +7,7 @@ export default function Contact() {
     email: '',
     message: '',
   })
+  const [consent, setConsent] = useState(false)
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -25,6 +26,7 @@ export default function Contact() {
       if (response.ok) {
         setStatus('success')
         setFormData({ name: '', email: '', message: '' })
+        setConsent(false)
       } else {
         setStatus('error')
       }
@@ -159,9 +161,24 @@ export default function Contact() {
                 />
               </div>
 
+              <div className="flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  id="consent"
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                  className="mt-1 h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                  required
+                />
+                <label htmlFor="consent" className="text-sm text-gray-600">
+                  Súhlasím so spracovaním osobných údajov za účelom odpovede na moju správu.
+                  Vaše údaje nebudú poskytnuté tretím stranám a budú použité výhradne na komunikáciu s vami.
+                </label>
+              </div>
+
               <button
                 type="submit"
-                disabled={status === 'loading'}
+                disabled={status === 'loading' || !consent}
                 className="w-full rounded-xl bg-primary-600 px-6 py-4 font-semibold text-white shadow-lg hover:bg-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
               >
                 {status === 'loading' ? (

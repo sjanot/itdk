@@ -8,6 +8,7 @@ import About from './components/About'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import AiChat from './components/AiChat'
+import CookieConsent from './components/CookieConsent'
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -25,6 +26,7 @@ function App() {
       </main>
       <Footer />
       <AiChat />
+      <CookieConsent />
     </div>
   )
 }
