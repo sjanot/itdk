@@ -1,26 +1,23 @@
-# Environment
+# Environment variables (NEVER commit these!)
 .env
-*.env.local
+.env.local
+.env.production
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-venv/
-ENV/
-.venv/
-
-# Node
+# Dependencies
 node_modules/
+__pycache__/
+*.pyc
+venv/
+env/
+
+# Build outputs
 dist/
-.npm
-*.tsbuildinfo
+build/
+*.egg-info/
 
 # IDE
-.idea/
 .vscode/
+.idea/
 *.swp
 *.swo
 
@@ -30,8 +27,4 @@ Thumbs.db
 
 # Logs
 *.log
-logs/
-
-# Build
-build/
-*.egg-info/
+npm-debug.log*
