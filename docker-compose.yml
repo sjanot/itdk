@@ -6,7 +6,7 @@ services:
     container_name: itdk-backend
     restart: unless-stopped
     environment:
-      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - GEMINI_API_KEY=AIzaSyBFpSpWWCS_OuCDAtjINi2Fb4IyvpUSt7I
       - MAIL_SERVER=${MAIL_SERVER:-wes1-smtp.wedos.net}
       - MAIL_PORT=${MAIL_PORT:-587}
       - MAIL_USERNAME=${MAIL_USERNAME:-info@it-dk.sk}
