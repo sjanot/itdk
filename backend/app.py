@@ -135,7 +135,7 @@ def chat():
         })
 
     try:
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-2.0-flash')
 
         # Build conversation with system prompt
         messages = [{'role': 'user', 'parts': [SYSTEM_PROMPT + '\n\nPoužívateľ: Ahoj']},
