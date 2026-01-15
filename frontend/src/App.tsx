@@ -9,6 +9,7 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import AiChat from './components/AiChat'
 import CookieConsent from './components/CookieConsent'
+import InstallPWA from './components/InstallPWA'
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -51,6 +52,7 @@ function App() {
       <Footer />
       <AiChat />
       <CookieConsent />
+      <InstallPWA />
     </div>
   )
 }
