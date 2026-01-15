@@ -4,3 +4,4 @@ flask-mail==0.9.1
 python-dotenv==1.0.0
 gunicorn==21.2.0
 google-generativeai>=0.8.0
+requests==2.31.0

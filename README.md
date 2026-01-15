@@ -73,3 +73,25 @@ Aplikácia bude dostupná na:
 - AI chatbot asistent (Gemini)
 - Kontaktný formulár
 - Mobilné menu
+- **Sledovanie návštevníkov** - automatické odosielanie emailov s informáciami o návštevách (IP, lokalita, referrer)
+
+## Sledovanie návštevníkov
+
+Aplikácia automaticky zaznamenáva každú návštevu stránky a posiela email s nasledujúcimi informáciami:
+
+- **Čas návštevy** - presný dátum a čas
+- **IP adresa** - IP adresa návštevníka
+- **Geolokácia** - krajina, región, mesto (získané z IP adresy)
+- **ISP** - poskytovateľ internetu návštevníka
+- **Referrer** - odkiaľ prišiel návštevník (alebo "Priamy vstup")
+- **User Agent** - prehliadač a operačný systém
+
+### Konfigurácia tracking emailov
+
+V `.env` súbore alebo `docker-compose.yml` nastavte:
+
+```bash
+TRACKING_EMAIL=vas-email@example.com  # Email kde chcete dostávať notifikácie
+```
+
+Ak nie je nastavené, notifikácie sa posielajú na `info@it-dk.sk`.

@@ -3,6 +3,8 @@ from flask_cors import CORS
 from flask_mail import Mail, Message
 import os
 import google.generativeai as genai
+import requests
+from datetime import datetime
 
 app = Flask(__name__)
 CORS(app)
@@ -49,6 +51,108 @@ mail = Mail(app)
 @app.route('/api/health', methods=['GET'])
 def health():
     return jsonify({'status': 'ok'})
+
+def get_location_from_ip(ip):
+    """Get location information from IP address using free API"""
+    try:
+        # Skip for local IPs
+        if ip in ['127.0.0.1', 'localhost', '::1']:
+            return {
+                'country': 'Local',
+                'city': 'Local',
+                'region': 'Local'
+            }
+        
+        # Use ip-api.com free service (no API key needed, 45 req/min limit)
+        response = requests.get(f'http://ip-api.com/json/{ip}?fields=status,country,countryCode,region,regionName,city,zip,lat,lon,timezone,isp,org,as,query', timeout=5)
+        if response.status_code == 200:
+            data = response.json()
+            if data.get('status') == 'success':
+                return {
+                    'country': data.get('country', 'Unknown'),
+                    'country_code': data.get('countryCode', ''),
+                    'region': data.get('regionName', 'Unknown'),
+                    'city': data.get('city', 'Unknown'),
+                    'zip': data.get('zip', ''),
+                    'lat': data.get('lat', 0),
+                    'lon': data.get('lon', 0),
+                    'timezone': data.get('timezone', ''),
+                    'isp': data.get('isp', 'Unknown'),
+                    'org': data.get('org', ''),
+                }
+    except Exception as e:
+        print(f'Geolocation error: {e}')
+    
+    return {
+        'country': 'Unknown',
+        'city': 'Unknown',
+        'region': 'Unknown'
+    }
+
+@app.route('/api/track', methods=['POST'])
+def track_visit():
+    """Track page visits and send email notification"""
+    try:
+        data = request.json or {}
+        
+        # Get visitor information
+        ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
+        if ',' in ip_address:
+            ip_address = ip_address.split(',')[0].strip()
+        
+        user_agent = request.headers.get('User-Agent', 'Unknown')
+        referrer = data.get('referrer', 'Direct')
+        page = data.get('page', '/')
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        
+        # Get location from IP
+        location = get_location_from_ip(ip_address)
+        
+        # Prepare email content
+        email_subject = f'[IT-DK.sk] Nová návšteva stránky'
+        email_body = f'''Nová návšteva na IT-DK.sk
+
+Čas: {timestamp}
+Stránka: {page}
+
+NÁVŠTEVNÍK:
+IP adresa: {ip_address}
+Krajina: {location.get('country', 'Unknown')}
+Región: {location.get('region', 'Unknown')}
+Mesto: {location.get('city', 'Unknown')}
+ISP: {location.get('isp', 'Unknown')}
+
+TECHNICKÉ INFORMÁCIE:
+Referrer: {referrer if referrer != 'Direct' else 'Priamy vstup (žiadny referrer)'}
+User Agent: {user_agent}
+
+---
+IT-DK.sk Tracking System
+'''
+        
+        # Send email notification
+        try:
+            msg = Message(
+                subject=email_subject,
+                recipients=[os.environ.get('TRACKING_EMAIL', 'info@it-dk.sk')],
+                body=email_body
+            )
+            mail.send(msg)
+        except Exception as e:
+            print(f'Email send error: {e}')
+            # Don't fail the request if email fails
+        
+        return jsonify({
+            'success': True,
+            'message': 'Visit tracked'
+        })
+    
+    except Exception as e:
+        print(f'Tracking error: {e}')
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
 
 @app.route('/api/contact', methods=['POST'])
 def contact():

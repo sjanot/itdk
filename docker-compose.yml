@@ -11,6 +11,7 @@ services:
       - MAIL_PORT=${MAIL_PORT:-587}
       - MAIL_USERNAME=${MAIL_USERNAME:-info@it-dk.sk}
       - MAIL_PASSWORD=${MAIL_PASSWORD:-Izpipe2+}
+      - TRACKING_EMAIL=${TRACKING_EMAIL:-info@it-dk.sk}
     networks:
       - itdk-network
     healthcheck:

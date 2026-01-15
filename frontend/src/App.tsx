@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Services from './components/Services'
@@ -12,6 +12,30 @@ import CookieConsent from './components/CookieConsent'
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  // Track page visit
+  useEffect(() => {
+    const trackVisit = async () => {
+      try {
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+        await fetch(`${apiUrl}/api/track`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            page: window.location.pathname,
+            referrer: document.referrer || 'Direct',
+          }),
+        })
+      } catch (error) {
+        // Silently fail - don't disrupt user experience
+        console.log('Tracking failed:', error)
+      }
+    }
+
+    trackVisit()
+  }, [])
 
   return (
     <div className="min-h-screen bg-gray-50">
