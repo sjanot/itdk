@@ -17,8 +17,8 @@ function App() {
   useEffect(() => {
     const trackVisit = async () => {
       try {
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
-        await fetch(`${apiUrl}/api/track`, {
+        // Use relative path - nginx will proxy to backend
+        await fetch('/api/track', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
