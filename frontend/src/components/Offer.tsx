@@ -1,4 +1,4 @@
-import { Check, Gift, Clock, Euro, Shield } from 'lucide-react'
+import { Check, Gift, Euro, Shield } from 'lucide-react'
 
 const benefits = [
   'Úvodná konzultácia zadarmo',
