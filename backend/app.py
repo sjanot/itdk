@@ -35,12 +35,14 @@ Služby:
 
 Odpovedaj profesionálne, stručne a v slovenčine. Pomáhaj návštevníkom s otázkami o službách a nasmeruj ich na kontakt pre konkrétne projekty."""
 
-# Mail configuration (optional - configure in production)
-app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER', 'smtp.gmail.com')
+# Mail configuration
+app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER', 'wes1-smtp.wedos.net')
 app.config['MAIL_PORT'] = int(os.environ.get('MAIL_PORT', 587))
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME', '')
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME', 'info@it-dk.sk')
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD', '')
+app.config['MAIL_DEFAULT_SENDER'] = ('IT-DK.sk', 'info@it-dk.sk')
 
 mail = Mail(app)
 
@@ -58,17 +60,20 @@ def contact():
     if not all([name, email, message]):
         return jsonify({'error': 'Všetky polia sú povinné'}), 400
 
-    # In production, send email here
-    # try:
-    #     msg = Message(
-    #         subject=f'Nová správa od {name}',
-    #         sender=email,
-    #         recipients=['your-email@it-dk.sk'],
-    #         body=f'Od: {name}\nEmail: {email}\n\nSpráva:\n{message}'
-    #     )
-    #     mail.send(msg)
-    # except Exception as e:
-    #     return jsonify({'error': 'Nepodarilo sa odoslať správu'}), 500
+    try:
+        msg = Message(
+            subject=f'[IT-DK.sk] Nová správa od {name}',
+            recipients=['info@it-dk.sk'],
+            reply_to=email,
+            body=f'Nová správa z kontaktného formulára na it-dk.sk\n\n'
+                 f'Meno: {name}\n'
+                 f'Email: {email}\n\n'
+                 f'Správa:\n{message}'
+        )
+        mail.send(msg)
+    except Exception as e:
+        print(f'Email error: {e}')
+        return jsonify({'error': 'Nepodarilo sa odoslať správu'}), 500
 
     return jsonify({'success': True, 'message': 'Správa bola úspešne odoslaná'})
 
