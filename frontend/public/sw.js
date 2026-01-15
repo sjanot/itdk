@@ -1,5 +1,5 @@
 // Service Worker for IT-DK.sk PWA
-const CACHE_NAME = 'itdk-v1';
+const CACHE_NAME = 'itdk-v2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -37,6 +37,11 @@ self.addEventListener('activate', (event) => {
 
 // Fetch event - serve from cache, fallback to network
 self.addEventListener('fetch', (event) => {
+  // Skip caching for POST, PUT, DELETE requests
+  if (event.request.method !== 'GET') {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
