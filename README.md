@@ -25,7 +25,16 @@ itdk/
     └── tailwind.config.js
 ```
 
-## Inštalácia a spustenie
+## Deployment na produkčný server
+
+Pre deployment na VPS server cez Portainer, pozri **[DEPLOYMENT.md](DEPLOYMENT.md)** - kompletný návod.
+
+**Rýchly deployment:**
+```bash
+./deploy.sh 'portainer_admin_heslo'
+```
+
+## Inštalácia a spustenie (lokálne)
 
 ### Backend
 
