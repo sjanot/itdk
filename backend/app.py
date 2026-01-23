@@ -22,7 +22,7 @@ O firme:
 - Ponúkame bezplatnú úvodnú konzultáciu
 - 3 dni spolupráce na skúšku bez záväzkov
 - Hodinová sadzba 25€/hod s transparentným sledovaním času
-- Kontakt: +421 911 085 838
+- Kontakt: +421 911 085 838 - Štefan Janoťák, Dolný Kubín
 - Web: www.it-dk.sk
 - Pracovná doba: Pondelok – Piatok, 8:30 – 16:00
 

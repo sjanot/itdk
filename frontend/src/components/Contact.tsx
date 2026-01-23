@@ -64,6 +64,10 @@ export default function Contact() {
                   >
                     +421 911 085 838
                   </a>
+                  <p className="mt-2 text-gray-600">
+                    Štefan Janoťák<br />
+                    Dolný Kubín
+                  </p>
                 </div>
               </div>
 
