@@ -76,12 +76,12 @@ export default function Contact() {
                   <Mail className="h-6 w-6 text-primary-600" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">Web</h3>
+                  <h3 className="font-semibold text-gray-900">Email</h3>
                   <a
-                    href="https://it-dk.sk"
+                    href="mailto:info@it-dk.sk"
                     className="mt-1 text-lg text-primary-600 hover:text-primary-700 transition-colors"
                   >
-                    www.it-dk.sk
+                    info@it-dk.sk
                   </a>
                 </div>
               </div>
