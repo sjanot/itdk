@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Phone, Mail, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { Phone, Mail, Clock, Send, CheckCircle, AlertCircle, MessageCircle } from 'lucide-react'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -82,6 +82,23 @@ export default function Contact() {
                     className="mt-1 text-lg text-primary-600 hover:text-primary-700 transition-colors"
                   >
                     info@it-dk.sk
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 rounded-xl bg-primary-100 p-3">
+                  <MessageCircle className="h-6 w-6 text-primary-600" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900">WhatsApp</h3>
+                  <a
+                    href="https://wa.me/421911085838"
+                    className="mt-1 text-lg text-primary-600 hover:text-primary-700 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    +421 911 085 838
                   </a>
                 </div>
               </div>
