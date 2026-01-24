@@ -66,7 +66,8 @@ export default function Contact() {
                   </a>
                   <p className="mt-2 text-gray-600">
                     Štefan Janoťák<br />
-                    Dolný Kubín
+                    Dolný Kubín<br />
+                    Odbojárov 1957/8
                   </p>
                 </div>
               </div>
