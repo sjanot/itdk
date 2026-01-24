@@ -155,6 +155,40 @@ export default function Portfolio() {
           </a>
         </div>
 
+        {/* AI Assistant Link */}
+        <div className="mx-auto mt-8 max-w-4xl">
+          <a
+            href="https://ai.it-dk.sk"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block relative rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 p-6 shadow-xl overflow-hidden hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-[1.02]"
+          >
+            {/* Background decoration */}
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20" />
+
+            <div className="relative flex items-center justify-between">
+              <div>
+                {/* Title */}
+                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-cyan-200 transition-colors">
+                  🤖 AI.it-dk.sk - AI Asistent
+                </h3>
+
+                {/* Description */}
+                <p className="text-blue-100">
+                  ChatGPT-4o asistent pre programovanie, technické poradenstvo a riešenie problémov
+                </p>
+              </div>
+
+              {/* Arrow */}
+              <div className="flex-shrink-0 ml-4">
+                <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm text-white text-2xl group-hover:bg-white/30 group-hover:scale-110 transition-all">
+                  →
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+
         <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2">
           {solutions.map((solution) => (
             <div
