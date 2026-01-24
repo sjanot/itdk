@@ -29,11 +29,13 @@ ADMIN_PASSWORD="$1"
 echo "Step 1: Connecting to server..."
 echo "Step 2: Authenticating with Portainer..."
 
-# Get JWT token
-TOKEN=$(ssh -p $SSH_PORT $SSH_USER@$SERVER "curl -sX POST 'http://localhost:9000/api/auth' \
+# Get JWT token - use base64 to avoid all escaping issues
+JSON_PAYLOAD=$(python3 -c "import json, sys; print(json.dumps({'username': 'admin', 'password': sys.argv[1]}))" "$ADMIN_PASSWORD")
+PAYLOAD_B64=$(echo -n "$JSON_PAYLOAD" | base64 -w0)
+TOKEN=$(ssh -p $SSH_PORT $SSH_USER@$SERVER "echo '$PAYLOAD_B64' | base64 -d | curl -sX POST 'http://localhost:9000/api/auth' \
   -H 'Content-Type: application/json' \
-  -d '{\"username\":\"admin\",\"password\":\"$ADMIN_PASSWORD\"}' \
-  2>/dev/null | python3 -c \"import sys,json; print(json.load(sys.stdin)['jwt'])\"")
+  -d @- \
+  2>/dev/null | python3 -c 'import sys,json; print(json.load(sys.stdin).get(\"jwt\", \"\"))'")
 
 if [ -z "$TOKEN" ]; then
     echo "❌ Authentication failed. Check password."
